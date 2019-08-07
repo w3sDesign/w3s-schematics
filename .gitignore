@@ -19,6 +19,5 @@ yarn-error.log*
 
 
 # Ignore source-repos
-_angular-cli-source-repos
-_ts-source-repos
+*source-repos/
 
