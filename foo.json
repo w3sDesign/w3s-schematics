@@ -1,0 +1,43 @@
+// JSON.stringify(tree):
+
+{
+  "_backend": {
+    "_delegate": {},
+    "_root": "/C/Users/gfranke/dev/angular/w3s-schematics"
+  },
+  "_id": -1,
+  "_ancestry": {},
+  "_dirCache": {},
+  "_record": {
+    "_cache": {},
+    "_watchers": {},
+    "_back": {
+      "_delegate": {
+        "_delegate": {},
+        "_root": "/C/Users/gfranke/dev/angular/w3s-schematics"
+      }
+    },
+    "_filesToCreate": {},
+    "_filesToRename": {},
+    "_filesToRenameRevert": {},
+    "_filesToDelete": {},
+    "_filesToOverwrite": {}
+  },
+  "_recordSync": {
+    "_delegate": {
+      "_cache": {},
+      "_watchers": {},
+      "_back": {
+        "_delegate": {
+          "_delegate": {},
+          "_root": "/C/Users/gfranke/dev/angular/w3s-schematics"
+        }
+      },
+      "_filesToCreate": {},
+      "_filesToRename": {},
+      "_filesToRenameRevert": {},
+      "_filesToDelete": {},
+      "_filesToOverwrite": {}
+    }
+  }
+}

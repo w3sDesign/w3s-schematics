@@ -1,0 +1,17 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "class": {
+      "aliases": [
+        "cl"
+      ],
+      "factory": "./class",
+      "description": "Create a class.",
+      "schema": "./class/schema.json"
+    },
+    "hello-world": {
+      "description": "A blank schematic.",
+      "factory": "./hello-world/index#helloWorld"
+    }
+  }
+}
