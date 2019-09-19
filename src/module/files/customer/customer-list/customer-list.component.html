@@ -1,0 +1,202 @@
+<div class="w3s-list-component mat-elevation-z8">
+
+
+  <!-- Filter template component -->
+  <!-- ############################################################ -->
+
+  <!-- ============================================================ -->
+
+  <w3s-customer-filter-template (queryParamsChange)="onQueryParamsChange($event)">
+
+  </w3s-customer-filter-template>
+
+  <!-- ============================================================ -->
+
+
+
+  <!-- totalNumberOfItems and Create/Update/Delete buttons -->
+  <!-- ############################################################ -->
+  <!-- <div id="crudButtons" #crudButtons> -->
+
+  <div class="button-bar" #crudButtons>
+
+    <div class="special-font">
+      {{dataSource.totalNumberOfItems | async}} customers selected.
+    </div>
+
+
+    <div class="push-right">
+      <button mat-raised-button color="primary" matTooltip="Create new customers" (click)="createCustomer()">
+        Create
+      </button>
+    </div>
+
+    <button mat-raised-button color="primary" matTooltip="Update selected customers" (click)="updateCustomer()">
+      Update
+    </button>
+
+    <button mat-raised-button color="primary" matTooltip="Delete selected customers" (click)="deleteCustomers()">
+      Delete
+    </button>
+
+    <button mat-raised-button matTooltip="Add/Remove columns" (click)="columnDrawerRef.toggle()">
+      Settings
+    </button>
+
+  </div>
+
+
+  <mat-divider></mat-divider>
+
+
+
+
+  <mat-drawer-container>
+
+    <!-- Selecting columns -->
+    <!-- ############################################################ -->
+    <!-- Right drawer for selecting the columns to display -->
+
+    <!-- no matTooltip on *ngFor! Error on routerLink / destroy tooltip -->
+    <!-- Cannot read property 'remove' of undefined -->
+
+
+    <mat-drawer #columnDrawerRef position="end" mode="side" [opened]="'false'" class="mat-elevation-z8">
+
+      <table id="test1" mat-table #columnSelectionTable [dataSource]="availableColumns">
+
+        <ng-container [matColumnDef]="column" *ngFor="let column of ['select2', 'name']; let i = index">
+
+          <!-- Select column definition -->
+          <ng-container *ngIf="column === 'select2'">
+
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox (change)="$event ? toggleAllColumns() : null; $event ? setDisplayedColumns() : null" [checked]="columnSelection.hasValue() && allColumnsSelected()" [indeterminate]="columnSelection.hasValue() && !allColumnsSelected()">
+              </mat-checkbox>
+            </th>
+
+            <!-- row from dataSource -->
+            <td mat-cell *matCellDef="let row">
+              <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? columnSelection.toggle(row) : null; $event ? setDisplayedColumns() : null" [checked]="columnSelection.isSelected(row)">
+              </mat-checkbox>
+            </td>
+
+          </ng-container>
+
+          <!-- All other column definitions -->
+          <ng-container *ngIf="column !== 'select2'">
+
+            <th mat-header-cell *matHeaderCellDef>
+              Select Columns
+            </th>
+
+            <td mat-cell *matCellDef="let row">{{row | titlecase}}</td>
+
+          </ng-container>
+
+        </ng-container>
+
+
+        <!-- Row definitions -->
+        <tr mat-header-row *matHeaderRowDef="['select2', 'name']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['select2', 'name']"></tr>
+
+      </table>
+
+    </mat-drawer>
+
+
+    <!-- Set min-height when drawer is opened -->
+    <mat-drawer-content [class.drawer-open]="columnDrawerRef.opened">
+
+      <div *ngIf="showTestValues" class="w3s-show-test-values">
+        <br>########## availableColumns = <br> {{availableColumns | json}}
+        <br>########## displayedColumns = <br> {{displayedColumns | json}}
+      </div>
+
+
+
+
+      <!-- Main customer data table -->
+      <!-- ############################################################ -->
+
+      <table class="customerTable" mat-table #table matSort [matSortActive]="activatedQueryParams.sortField" [matSortDirection]="activatedQueryParams.sortOrder" matSortDisableClear cdkDropListGroup [cdkDropListGroupDisabled]="'true'" [dataSource]="dataSource">
+
+        <ng-container [matColumnDef]="column" *ngFor="let column of availableColumns; let i = index">
+
+          <!-- Select column definition -->
+          <ng-container *ngIf="column === 'select'">
+
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox (change)="$event ? toggleAllCustomers() : null" [checked]="customerSelection.hasValue() && allCustomersSelected()" [indeterminate]="customerSelection.hasValue() && !allCustomersSelected()">
+              </mat-checkbox>
+            </th>
+
+            <!-- row from dataSource -->
+            <td mat-cell *matCellDef="let row">
+              <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? customerSelection.toggle(row) : null" [checked]="customerSelection.isSelected(row)">
+              </mat-checkbox>
+            </td>
+
+          </ng-container>
+
+          <!-- All other column definitions -->
+          <ng-container *ngIf="column !== 'select'">
+
+            <th mat-header-cell *matHeaderCellDef mat-sort-header cdkDropList cdkDropListLockAxis="x" cdkDropListOrientation="horizontal" (cdkDropListDropped)="dropListDropped($event, i)" cdkDrag (cdkDragStarted)="dragStarted($event, i)" [cdkDragData]="{name: column, columnIndex: i}">
+              {{column | titlecase}}
+              <!-- <div class="example-handle" cdkDragHandle></div> -->
+            </th>
+
+            <!-- row from dataSource -->
+            <td mat-cell *matCellDef="let row">
+              <span *ngIf="column === 'creationDate'">
+                {{row[column] | momentDatePipe }}
+              </span>
+              <span *ngIf="column !== 'creationDate'">
+                {{row[column]}}
+              </span>
+            </td>
+
+          </ng-container>
+
+        </ng-container>
+
+
+        <!-- Row definitions -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+        <!-- (click) ="customerSelection.toggle(row)"> -->
+        <!-- [routerLink]="['/customers', row.id, {ftname: activeFilterTemplateName}]" -->
+        <!-- matTooltip="Update customer id={{row.id}}" matTooltipPosition="left" -->
+
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" [class.selected]="row.id === selectedCustomerId" (click)="updateCustomer(row.id)">
+        </tr>
+
+      </table>
+
+
+
+      <!-- MatSpinner and MatPaginator -->
+      <!-- ############################################################ -->
+      <!-- <div style="display:flex; justify-content:flex-end;"> -->
+
+      <mat-action-row style="align-items: center">
+
+        <mat-spinner [diameter]="20" *ngIf="dataSource.isLoading | async">
+        </mat-spinner>
+
+        <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50, 100, 250, 500]" [length]="dataSource.totalNumberOfItems | async" [showFirstLastButtons]="true">
+        </mat-paginator>
+
+      </mat-action-row>
+
+
+    </mat-drawer-content>
+
+
+  </mat-drawer-container>
+
+
+</div>
+<!-- .w3s-list-component -->

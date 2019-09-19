@@ -1,0 +1,28 @@
+.flex-box {
+
+  display: flex;
+
+  flex-direction: row;
+  align-items: center; // vertical
+  justify-content: flex-start; // horizontal
+  flex-wrap: wrap; // default = nowrap
+
+  font-size: 14px;
+  padding: 16px 8px 16px 24px;
+
+  .mat-form-field {
+    flex: 1;
+    margin-right: 10px;
+  }
+
+  button {
+    flex: 0;
+    margin-right: 10px;
+  }
+
+}
+
+.mat-form-field {
+  margin-right: 10px;
+}
+

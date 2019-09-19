@@ -1,0 +1,127 @@
+<mat-tab-group dynamicHeight="true">
+
+
+  <mat-tab label="Basic Data">
+
+
+    <div class="w3s-detail-component mat-elevation-z8">
+
+      <!-- Back/Cancel/Save buttons -->
+      <!-- ######################################################## -->
+      <!-- At the beginning *and* at the end! -->
+
+      <div class="button-bar">
+
+        <div class="special-font">
+          <!-- Create/Update Customer -->
+          {{title}}
+        </div>
+
+        <div class="push-right">
+          <button type="button" mat-raised-button (click)="navigateToList(customer)" matTooltip="Go back.">
+            Back
+          </button>
+        </div>
+
+        <!-- [mat-dialog-close]="customer" only for closing dialog window -->
+        <button type="button" mat-raised-button [disabled]="!customerForm?.form.dirty" (click)="navigateToList(customer)" matTooltip="Cancel changes and go back.">
+          Cancel
+        </button>
+
+        <!-- Create or update customer -->
+        <!-- customerForm.form.getRawValue() = actual values of customer -->
+        <!-- [disabled]="!customerFormHasChanged" -->
+        <!-- Compare with customer-filter-template.component.html -->
+
+        <button type="button" mat-raised-button color="primary" [disabled]="!customerForm?.form.valid || !customerForm?.form.dirty" (click)="customer.id ? updateCustomer() : createCustomer()" matTooltip="Save changes and go back.">
+          Save
+        </button>
+
+      </div>
+      <mat-divider></mat-divider>
+
+
+
+      <!-- Customer detail form -->
+      <!-- ######################################################## -->
+
+      <div class="customer-form">
+
+        <!-- ====================================================== -->
+
+        <w3s-dynamic-form #customerForm *ngIf="customerQuestions" [questions]="customerQuestions" [options]="customerFormOptions" [dataGroupNames]="dataGroupNames" [title]="title" (formSubmit)="onCustomerFormSubmit($event)">
+
+          <!-- ==================================================== -->
+
+        </w3s-dynamic-form>
+
+      </div>
+
+
+
+
+
+      <br>
+
+      <!-- Back/Cancel/Save buttons -->
+      <!-- ######################################################## -->
+      <!-- At the beginning *and* at the end! -->
+
+      <div class="button-bar">
+
+        <button type="button" mat-raised-button (click)="navigateToList(customer)" matTooltip="Go back.">
+          Back
+        </button>
+
+        <!-- [mat-dialog-close]="customer" only for closing dialog window -->
+        <button type="button" mat-raised-button [disabled]="!customerForm?.form.dirty" (click)="navigateToList(customer)" matTooltip="Cancel changes and go back.">
+          Cancel
+        </button>
+
+        <!-- Create or update customer -->
+        <!-- customerForm.form.getRawValue() = actual values of customer -->
+        <!-- [disabled]="!customerFormHasChanged" -->
+        <!-- Compare with customer-filter-template.component.html -->
+
+        <button type="button" mat-raised-button color="primary" [disabled]="!customerForm?.form.valid || !customerForm?.form.dirty" (click)="customer.id ? updateCustomer() : createCustomer()" matTooltip="Save changes and go back.">
+          Save
+        </button>
+
+      </div>
+
+
+
+
+      <div *ngIf="showTestValues" class="w3s-show-test-values">
+
+        <br>########## customer:<br> {{customer | json}}
+        <!-- This causes ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked.  -->
+        <!-- <br>########## customerForm?.form.value:<br> {{customerForm?.form.value  | json}} -->
+        <br><br>
+
+      </div>
+
+
+      <!-- </div> -->
+    </div>
+
+
+  </mat-tab>
+
+
+
+
+
+
+
+
+  <mat-tab label="Orders"> Content 2 </mat-tab>
+
+  <mat-tab label="Invoices"> Content 3 </mat-tab>
+
+  <mat-tab label="Accounting"> Content 3 </mat-tab>
+
+  <mat-tab label="Statistics"> Content 3 </mat-tab>
+
+
+</mat-tab-group>

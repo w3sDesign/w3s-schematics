@@ -1,0 +1,145 @@
+<h5>{{title}}</h5>
+
+<!-- <form *ngIf="customer$ | async as customer" -->
+
+<form *ngIf="customer" [formGroup]="customerForm">
+
+  <mat-spinner [diameter]="20" *ngIf="isLoading">
+  </mat-spinner>
+
+
+  <br />
+  <h6> Basic Data </h6>
+  <mat-divider></mat-divider>
+  <div class="flex-box">
+
+    <mat-form-field appearance="fill">
+      <mat-label>ID</mat-label>
+      <!-- {{ customer.id }} -->
+      <!-- <input type="number" matInput disabled /> -->
+      <input type="number" size="60" matInput readonly required formControlName="id" placeholder="" matTooltip="Auto-generated unique number" />
+      <!-- <mat-hint>Auto-generated number</mat-hint> -->
+      <mat-error>ID is required.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <!-- cdkFocusInitial TODO test autofocus-->
+      <input type="text" matInput formControlName="name" cdkFocusInitial placeholder="" matTooltip="Full company name" />
+      <mat-error>Name is required.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="type">
+        <mat-option value="0">Business</mat-option>
+        <mat-option value="1">Individual</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option value="0">Active</mat-option>
+        <mat-option value="1">Suspended</mat-option>
+        <mat-option value="2">Pending</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- <mat-form-field>
+			<input matInput [matDatepicker]="picker" matTooltip="Choose a Date of Birth" formControlName="dob" />
+			<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+			<mat-datepicker #picker></mat-datepicker>
+			<mat-hint align="start">Please enter
+				<strong>Date of Birth</strong> in 'mm/dd/yyyy' format</mat-hint>
+		</mat-form-field> -->
+
+  </div> <!-- End flex-box -->
+
+
+  <br />
+  <h6> Addresses </h6>
+  <mat-divider></mat-divider>
+
+  <div class="flex-box">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Country</mat-label>
+      <mat-select formControlName="country">
+        <!-- <mat-option></mat-option> -->
+        <mat-option *ngFor="let country of countries" value="{{country.name}}">{{country.name}}</mat-option>
+      </mat-select>
+      <mat-error>Country is required.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Postal Code</mat-label>
+      <input matInput formControlName="postalCode" />
+      <mat-error>Postal Code is required.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>City</mat-label>
+      <input matInput formControlName="city" />
+      <mat-error>City is required.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Street</mat-label>
+      <input matInput formControlName="street" />
+      <mat-error>Street is required.</mat-error>
+    </mat-form-field>
+
+  </div> <!-- End flex-box -->
+
+
+  <br />
+  <h6> Contacts </h6>
+  <mat-divider></mat-divider>
+
+  <div class="flex-box">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Department</mat-label>
+      <input matInput matTooltip="" formControlName="department" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Person</mat-label>
+      <input matInput matTooltip="" formControlName="person" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Phone</mat-label>
+      <input matInput matTooltip="" formControlName="phone" />
+      <mat-error>not required.</mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput matTooltip="" formControlName="email" />
+      <mat-error>Email is required.</mat-error>
+    </mat-form-field>
+
+  </div> <!-- End flex-box -->
+
+
+  <br />
+  <div class="flex-box">
+
+    <!-- cdkFocusInitial -->
+    <!-- [mat-dialog-close]="customer" only for closing dialog window -->
+    <button type="button" mat-raised-button (click)="returnToList()" matTooltip="Cancel changes">
+      Cancel
+    </button>&nbsp;
+
+    <button type="button" mat-raised-button color="primary" (click)="save()" [disabled]="isLoading" matTooltip="Save changes">
+      Save
+    </button>
+
+  </div> <!-- End flex-box -->
+
+  <p>Test Form Status =  {{customerForm.status }}</p>
+
+</form>

@@ -1,0 +1,65 @@
+.button-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center; // vertical
+  justify-content: flex-start; // horizontal
+  flex-wrap: wrap; // default = nowrap
+
+  padding: 16px 8px 16px 24px;
+  font-size: 14px;
+  width: 100%;
+
+  background-color: #fff;
+}
+
+.button-bar button {
+  margin-right: 20px;
+}
+
+.button-bar .push-right {
+  // Auto margin will take up all of the space that it can,
+  // and so the block is pushed to the right.
+  margin-left: auto;
+}
+
+.button-bar .special-font {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+
+
+.customer-form {
+  padding-left: 24px;
+}
+
+
+
+
+
+// not used here - delete - only needed for old version!
+// new version: styling in dynForm scss!
+
+// .flex-box {
+
+//   display: flex;
+
+//   flex-direction: row;
+//   justify-content: flex-start; // horizontal
+//   align-items: center; // vertical
+//   flex-wrap: wrap; // default = nowrap
+
+// font-size: 14px;
+// padding: 16px 8px 16px 24px;
+
+// .mat-form-field, w3s-dynamic-form-question {
+//   flex: 1;
+//   margin-right: 10px;
+// }
+
+// button {
+//   flex: 0;
+//   margin-right: 10px;
+// }
+
+// }

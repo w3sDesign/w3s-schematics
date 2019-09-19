@@ -3,6 +3,9 @@ src/**/*.js
 src/**/*.js.map
 src/**/*.d.ts
 
+lib/
+
+
 # IDEs
 .idea/
 jsconfig.json
@@ -20,4 +23,5 @@ yarn-error.log*
 
 # Ignore source-repos
 *source-repos/
+
 

@@ -11,7 +11,19 @@
     },
     "hello-world": {
       "description": "A blank schematic.",
-      "factory": "./hello-world/index#helloWorld"
+      "factory": "./hello-world/index#helloWorld",
+      "schema": "./hello-world/schema.json"
+    },
+    "menu": {
+      "aliases": [],
+      "description": "A blank schematic.",
+      "factory": "./menu/index#menu",
+      "schema": "./menu/schema.json"
+    },
+    "module": {
+      "description": "A Module schematic.",
+      "factory": "./module/index",
+      "schema": "./module/schema.json"
     }
   }
 }
