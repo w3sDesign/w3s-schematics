@@ -1,3 +1,4 @@
+// original schema.json from @schematics/angular/module
 // gf 11.08.2019 Generated from schema.json
 //               with: https://app.quicktype.io/
 
@@ -13,13 +14,17 @@
  */
 export interface Schema {
   /**
+   * The name of the reference NgModule.
+   */
+  referenceName?: string;
+  /**
    * The name of the NgModule.
    */
   name: string;
   /**
-   * The name of the reference NgModule.
+   * The path at which to create the NgModule, relative to the workspace root.
    */
-  referenceName?: string;
+  path?: string;
   /**
    * When true, the new NgModule imports "CommonModule".
    */
@@ -36,10 +41,7 @@ export interface Schema {
    * The declaring NgModule.
    */
   module?: string;
-  /**
-   * The path at which to create the NgModule, relative to the workspace root.
-   */
-  path?: string;
+  
   /**
    * The name of the project.
    */

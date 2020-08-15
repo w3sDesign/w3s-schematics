@@ -1,4 +1,4 @@
-https://github.com/angular/angular-cli/blob/master/packages/angular_devkit/schematics/src/rules/template.ts
+// https://github.com/angular/angular-cli/blob/master/packages/angular_devkit/schematics/src/rules/template.ts
 
 /**
  * @license

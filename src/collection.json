@@ -1,6 +1,13 @@
 {
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
+    "module": {
+      "aliases": [],
+      "description": "w3s feature module generation.",
+      "schema": "./module/schema.json",
+      "factory": "./module/index"
+    },
+
     "class": {
       "aliases": [
         "cl"
@@ -19,11 +26,7 @@
       "description": "A blank schematic.",
       "factory": "./menu/index#menu",
       "schema": "./menu/schema.json"
-    },
-    "module": {
-      "description": "A Module schematic.",
-      "factory": "./module/index",
-      "schema": "./module/schema.json"
     }
+   
   }
 }

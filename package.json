@@ -4,7 +4,7 @@
   "description": "A blank schematics",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "npm run build && jasmine src/**/*_spec.js"
+    "test": "npm run b uild && jasmine src/**/*_spec.js"
   },
   "keywords": [
     "schematics"
@@ -13,16 +13,17 @@
   "license": "MIT",
   "schematics": "./src/collection.json",
   "devDependencies": {
-    "@angular-devkit/core": "^8.1.2",
-    "@angular-devkit/schematics": "^8.1.2",
-    "@types/jasmine": "^3.3.9",
-    "@types/node": "^8.0.31",
-    "jasmine": "^3.3.1",
+    "@angular-devkit/core": "^8.3.26",
+    "@angular-devkit/schematics": "^8.3.26",
+    "@types/jasmine": "^3.5.10",
+    "@types/node": "^8.10.61",
+    "jasmine": "^3.5.0",
     "typescript": "~3.4.3"
   },
   "dependencies": {
-    "@schematics/angular": "^8.2.1",
+    "@schematics/angular": "^8.3.26",
     "@types/glob": "^7.1.1",
-    "glob": "^7.1.4"
+    "fs-extra": "^9.0.0",
+    "glob": "^7.1.6"
   }
 }

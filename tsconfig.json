@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     // "outDir": "./lib",
+    // "outDir": "./dist/out-tsc",
     "lib": [
       "es2018",
       "dom"
@@ -30,8 +31,9 @@
     "src/**/*"
   ],
   "exclude": [
-    "src/*/files/**/*",
+    "src/*/files*/**/*",
     "src/*/angular-examples/**/*",
     "**/*.save*",
+
   ]
 }

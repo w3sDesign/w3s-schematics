@@ -5,24 +5,24 @@
   "type": "object",
   "description": "Creates a new feature Module in the given or default project.",
   "properties": {
-    "name": {
-      "type": "string",
-      "description": "The name of the NgModule.",
-      "$default": {
-        "$source": "argv",
-        "index": 0
-      },
-      "x-prompt": "What name would you like to use for the NgModule?"
-    },
     "referenceName": {
       "type": "string",
       "description": "The name of the reference NgModule.",
       "default": "customer"
     },
+    "name": {
+      "type": "string",
+      "description": "The name of the generated module.",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use for the generated module?"
+    },
     "path": {
       "type": "string",
       "format": "path",
-      "description": "The path at which to create the NgModule, relative to the workspace root.",
+      "description": "The path at which to create the generated module, relative to the workspace root.",
       "visible": false
     },
     "project": {
